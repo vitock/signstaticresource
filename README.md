@@ -1,0 +1,2 @@
+# signstaticresource
+signstaticresource
