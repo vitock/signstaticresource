@@ -33,10 +33,11 @@ function draw(time){
 
 	}
 
-	for (let index = 0; index < width; index += 3) {
+	for (let index = 0; index < width; index += 2) {
 		const x1 =  50 *   Math.cos(index +  time / 520 );
-		var y = x1 + height/ 2
-		ctx.fillStyle = index %2 ? getRandomColor() : '#000';  
+		var y = x1 + height/ 2;
+		const i = index % 3;
+		ctx.fillStyle =  i   == 1 ? '#00f': i == 2 ?  '#f00' :'#0f0';  
 		ctx.fillRect(index,y  ,4,4 );
    }
 	 
