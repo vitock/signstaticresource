@@ -8,6 +8,8 @@
     <title>ECC 椭圆曲线加密工具</title>
     <style>
         .submit {
+            padding-left: 30px;
+            padding-right: 30px;
             width: 100px;
             height: 40px;
             color: white;
@@ -42,7 +44,7 @@
             width: 80%;
         }
         #result{
-            height: 100px;
+            height: 300px;
             width: 80%;
         }
         .desc{
@@ -66,6 +68,19 @@
             font-style:italic;
             font-weight: 500;
             letter-spacing: 2px;
+        }
+
+
+        @keyframes ascale
+        {
+            from {transform: scale(1.0)}
+            to {transform: scale(1.3);}
+			
+        }
+        .scale
+        {
+            animation: ascale 0.3s linear  infinite alternate;
+            -webkit-animation: ascale 0.3s linear  infinite alternate ;
         }
     </style>
 
@@ -101,7 +116,7 @@
          
     </div>
     
-    <div class="submit" id="genkeypair">生成密钥对 </div>
+    <div class="submit" id="genkeypair">重新生成密钥对 </div>
     <p>
     <div class="row">
         <text>公钥</text>
@@ -115,7 +130,7 @@
     
     <div class="row ecbtn">
         <div class="submit rb" id="enc">加密</div>
-        <div class="submit rb" id="dec">解密</div>
+        <div class="submit rb scale" id="dec">解密</div>
     </div>
     <textarea id='msg' placeholder="需要加密活解密的字符串" autocomplete="off" ></textarea>
     <div style="margin-top: 20px;">结果</div>
@@ -124,6 +139,20 @@
     
     
     <script>
+        // 默认的 公钥密钥 
+        // BKVtM3AiAwMJ7BogSwQF3fhpyFGER6QqW7EzFEWbF05SQ5d+IuD+yH5qRGrwwj2NjjEV36MpRDc/Xtao5u4Sgsc=
+        // j2N7rIVpxCV1mMdQEk66JgSyb5rXK1MdL8h0tU3ytzM
+
+        $("#prikey").val('fPtrf9iBkJTyEuCKbJuAxRoJEZJFOqPueQZ0mtsOC34=');
+        $("#pubkey").val('BAjDe3ig3ZKh5xO0+aA5Zuakz2ukRfe0M3Jzg8nVFn/pnmD58qBX5Iwxk/IUNTm6TVZv7MZcXOcx0KzKORTMD4U=');
+        var defaultmsg = 'ABAAIABBAAAAAN7EedcJE6Zqei77ywM1VoGL+zF4DcEbcuL6GRRkfR96Ix11GOFYw/TOHMS8ZCT90QRutwZbyfC8yIV6BM/0ho+Aiq7bjkFpjUxZs16+lJKtVjeumgHbls0KMkYcc8OQdBWHObMa/M1TH8ioe9eW/+vlzWHT3D9JYtxJnH2GrniG4bPDBA/dKVcUeH8z+3Aemhud6jH7ezO07VHCjah+iKzIOdf1lpEec5XDKEkbp0AZHRCWXrj2+RuvVkAGbzVe5lkKOsADL6beL7BZfw+S/OnjA3+QyJpfmiJPCIEnBV0r9cYF7F3sXMTzQ4lS/bGfwUx6OP/aEnDoe0c3/0nvZUvXLM/N90K0K33KqlaxI8ZXnNfWKPInQPwdY2qOYEK3xWrh1qPXgDt4SzsOM0FrKt8UWjiWnJP6e3GvtCaean2t8/GqeE0N4ZIs3Y7vQLBhW3nRsdynQj6nIwkh1Mh8OnvkEPXlWfDErXsCGVPh3tz6dC9WpAm/8uEZjSR36bjq45HdRPjn9QPwlAKfe/dHT3m3IXI8G7ry+BnzQ2LxE4AGBB7+seaeCKtKJsBFgIJN8orQgNz21NtcwNRwiNHXye7L1DML7N2N//cHo8hv2XyN7Z2dvkVKfKPyKJ75RQOIt44emEv/MGDLOd83UfGmXgOx';
+
+        setTimeout(function() {
+            $('#dec').removeClass('scale');
+        }, 3000);
+
+        $('#msg').val(defaultmsg)
+
         $('#genkeypair').click(function(){
             $.ajax({
                 url:  '//lwx01.herokuapp.com/gen_ecc?t='+new Date().getTime(),
