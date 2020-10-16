@@ -2,14 +2,17 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport" />
+
     <meta name="description" content="ECC 加密 椭圆曲线">
     <meta name="viewport" content="width=device-width,inital-scale=1">
     <title>ECC 椭圆曲线加密工具</title>
     <style>
         .submit {
-            padding-left: 30px;
-            padding-right: 30px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            padding-left: 10px;
+            padding-right: 10px;
             width: 100px;
             height: 40px;
             color: white;
@@ -31,20 +34,19 @@
             width: 80%;
         }
         .ecbtn{
-            width: 80%px;
+            width: 80%;
             margin-top: 40px;
         }
         .rb{
             display: inline-flex;
-            margin-left: 80px;
         }
 
         #msg{
-            height: 100px;
+            height: 150px;
             width: 80%;
         }
-        #result{
-            height: 300px;
+        #encresult{
+            height: 100px;
             width: 80%;
         }
         .desc{
@@ -82,6 +84,11 @@
             animation: ascale 0.3s linear  infinite alternate;
             -webkit-animation: ascale 0.3s linear  infinite alternate ;
         }
+
+        .note{
+            font-size: 13px;
+            color: coral;
+        }
     </style>
 
 
@@ -89,6 +96,8 @@
 </head>
 <body>
     <script type="text/javascript" src="https://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+
+    
     <div class="desc">
         
             <a href='https://zh.wikipedia.org/wiki/%E6%A4%AD%E5%9C%86%E6%9B%B2%E7%BA%BF%E5%AF%86%E7%A0%81%E5%AD%A6'>ECC(Elliptic Curve Cryptography)</a>椭圆曲线加密,公钥用来加密,私用用来解密,公钥加密的数据有且只能用私钥解密,公钥无法解密。
@@ -115,8 +124,15 @@
             
          
     </div>
+    <canvas  id="clock" height="200px" style="height: 200px;width: 100%;"></canvas>
+    <script type="text/javascript" src="clock.js?v=2"></script>
     
-    <div class="submit" id="genkeypair">重新生成密钥对 </div>
+    <div class="row">
+        <div class="submit" id="genkeypair">重新生成密钥对 </div>
+        <text class="note">注:重新生成后,旧有密文将不可解密。</text>
+        
+    </div>
+    
     <p>
     <div class="row">
         <text>公钥</text>
@@ -130,13 +146,15 @@
     
     <div class="row ecbtn">
         <div class="submit rb" id="enc">加密</div>
+        <div class="rb" style="width: 50px; ;"></div>
         <div class="submit rb scale" id="dec">解密</div>
     </div>
-    <textarea id='msg' placeholder="需要加密活解密的字符串" autocomplete="off" ></textarea>
-    <div style="margin-top: 20px;">结果</div>
-
-    <textarea id='result' placeholder="结果" autocomplete="off"></textarea>
     
+    <div style="margin-top: 20px;">密文</div>
+    <textarea id='encresult' placeholder="密文" autocomplete="off"></textarea>
+    
+    <div style="margin-top: 20px;">明文</div>
+    <textarea id='msg' placeholder="明文" autocomplete="off" ></textarea>
     
     <script>
         // 默认的 公钥密钥 
@@ -147,11 +165,9 @@
         $("#pubkey").val('BAjDe3ig3ZKh5xO0+aA5Zuakz2ukRfe0M3Jzg8nVFn/pnmD58qBX5Iwxk/IUNTm6TVZv7MZcXOcx0KzKORTMD4U=');
         var defaultmsg = 'ABAAIABBAAAAAN7EedcJE6Zqei77ywM1VoGL+zF4DcEbcuL6GRRkfR96Ix11GOFYw/TOHMS8ZCT90QRutwZbyfC8yIV6BM/0ho+Aiq7bjkFpjUxZs16+lJKtVjeumgHbls0KMkYcc8OQdBWHObMa/M1TH8ioe9eW/+vlzWHT3D9JYtxJnH2GrniG4bPDBA/dKVcUeH8z+3Aemhud6jH7ezO07VHCjah+iKzIOdf1lpEec5XDKEkbp0AZHRCWXrj2+RuvVkAGbzVe5lkKOsADL6beL7BZfw+S/OnjA3+QyJpfmiJPCIEnBV0r9cYF7F3sXMTzQ4lS/bGfwUx6OP/aEnDoe0c3/0nvZUvXLM/N90K0K33KqlaxI8ZXnNfWKPInQPwdY2qOYEK3xWrh1qPXgDt4SzsOM0FrKt8UWjiWnJP6e3GvtCaean2t8/GqeE0N4ZIs3Y7vQLBhW3nRsdynQj6nIwkh1Mh8OnvkEPXlWfDErXsCGVPh3tz6dC9WpAm/8uEZjSR36bjq45HdRPjn9QPwlAKfe/dHT3m3IXI8G7ry+BnzQ2LxE4AGBB7+seaeCKtKJsBFgIJN8orQgNz21NtcwNRwiNHXye7L1DML7N2N//cHo8hv2XyN7Z2dvkVKfKPyKJ75RQOIt44emEv/MGDLOd83UfGmXgOx';
 
-        setTimeout(function() {
-            $('#dec').removeClass('scale');
-        }, 3000);
+        
 
-        $('#msg').val(defaultmsg)
+        $('#encresult').val(defaultmsg)
 
         $('#genkeypair').click(function(){
             $.ajax({
@@ -170,24 +186,22 @@
             })
         })
 
-        function setresult(msg){
-            $("#result").val(msg);
-        }
 
         $('#enc').click(function(){
 
             var key = $("#pubkey").val();
             if(!key){
-                setresult('请先填写公钥')
+                alert('请先填写公钥')
                 return;
             }
 
             var msg = $("#msg").val();
             if(!msg){
-                setresult('需要加解密的信息')
+                alert('请填写需要加密的明文信息')
                 return;
             }
 
+            $('#encresult').val('椭圆封印~~');
             $.ajax({
                 url:  '//lwx01.herokuapp.com/ecc_enc?',
                 // url:  '//127.0.0.1:3001/ecc_enc?',
@@ -203,25 +217,27 @@
                     alert("出错" + JSON.stringify(e));
                 },
                 success:function(data){
-                    setresult(data.enc||data.err)
+                    $("#encresult").val(data.enc||data.err);
                 }
             })
         })
         
         $('#dec').click(function(){
+            $('#dec').removeClass('scale');
 
             var key = $("#prikey").val();
             if(!key){
-                setresult('请先填写私钥')
+                alert('请先填写私钥')
                 return;
             }
 
-            var msg = $("#msg").val();
+            var msg = $("#encresult").val();
             if(!msg){
-                setresult('需要加解密的信息')
+                alert('请填写需要解密的密文')
                 return;
             }
 
+            $('#msg').val('椭圆解印 ~~ 解!!');
             $.ajax({
                 url:  '//lwx01.herokuapp.com/ecc_dec?',
                 // url:  '//127.0.0.1:3001/ecc_dec?',
@@ -236,10 +252,10 @@
                     alert("出错" + JSON.stringify(e));
                 },
                 success:function(data){
-                    setresult(data.dec || data.err)
+                    $("#msg").val(data.dec||data.err);
                 }
             })
-        })
+        });
         
     </script>
     
