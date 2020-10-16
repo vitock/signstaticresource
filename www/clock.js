@@ -21,7 +21,7 @@ function draw(time){
  
 	ctx.clearRect(0,0,width,height)
 	
-	var dJ = 1,dX =0;
+	var dJ = 0,dX =0;
 	for (var  j = 0,dJ = 9 + 3 * Math.cos(time/400 + j/40) ; j < height; j += dJ) {
 		for (var index = 0,  dX = 9 + 3 * Math.sin(time/300 + (j /50 + index/40)) ; index < width; index += dX  ) {
 			 
@@ -33,11 +33,11 @@ function draw(time){
 
 	}
 
-	for (let index = 0; index < width; index += 2) {
+	for (let index = 0; index < width; index += 3) {
 		const x1 =  50 *   Math.cos(index +  time / 520 );
 		var y = x1 + height/ 2
-		ctx.fillStyle = '#000'
-		ctx.fillRect(index,y  ,5,5);
+		ctx.fillStyle = index %2 ? getRandomColor() : '#000';  
+		ctx.fillRect(index,y  ,4,4 );
    }
 	 
    requestAnimationFrame(draw)
