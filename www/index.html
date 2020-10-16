@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="google-site-verification" content="JqI3jOYef7OTumrYr92buUOEKZLHQz_jkJSCp0FpE3U" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="description" content="IT之家自动签到 ">
+	<meta name="viewport" content="width=device-width,inital-scale=1">
+	<title>IT之家自动签到</title>
+	<style type="text/css">
+		div{
+			text-align: left;
+			margin-top: 20px;
+		}
+		 
+		#clock{
+			margin-left: 10px;;
+		}
+		#randomImage{
+			width: 350px;
+			
+		}
+		#title{
+			display: none;
+		}
+		#count{
+			display: none;
+			color: red;
+			font-size: 20px;
+			margin-left: 20px;
+		}
+		#history{
+			display: none;
+		}
+		.history{
+			text-align:left;
+			font-size: 16px;
+			line-height: 38px;
+
+			display: block;
+		}
+		.addAcc{
+			display: block;
+			margin-top: 10px;
+			margin-bottom: 10px;
+			font-size:25px;
+			
+			text-decoration-line: none;
+			color: cornflowerblue;
+		}
+		#submit {
+			width: 200px;
+			height: 50px;
+			color: white;
+			font-size: 20px;
+			border-radius: 5px;
+			background-color: cornflowerblue;
+			align-items: center;
+			justify-content: center;
+			text-align: center;
+			line-height: 50px;
+
+		}
+	</style>
+</head>
+<body>
+	<img src='https://imxsw.herokuapp.com/'>
+	<div>
+		<canvas id="clock" height="200px" width="200px"></canvas>
+	</div>
+	<a class="addAcc" href="https://lwx01.herokuapp.com">刷新</a>
+	<a class="addAcc" href="addUser.html"> IT之家自动签到</a>
+	
+	<a class="addAcc" href="https://lwx01.herokuapp.com/status">Status</a>
+	<a class="addAcc" href="https://imxsw.herokuapp.com/">IP签名</a>
+	<a class="addAcc" href="https://lwx01.herokuapp.com/randImg">随机美图</a>
+
+	<a class="addAcc" href="list.html"> 已添加名单</a>
+	<a class="addAcc" href="ecc.html"> ECC椭圆曲线在线加解密</a>
+
+	<script type="text/javascript" src="https://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+	<script type="text/javascript" src="clock.js?v=a111"></script>
+	<script type="text/javascript" src="app.js?v=a111"></script>
+
+	<div id="submit"  class="postmsg">提交留言</div>
+	<textarea class="tfmsg" name="" value='' placeholder="留言" id="msg" cols="30" rows="10"></textarea>
+	<script src="https://gist.github.com/vitock/33ea1af1f69af05d57b763bdf3cc6964.js"></script>
+	<script type="text/javascript" src="https://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+	<script>
+		$('#submit').click(function(){
+			var msg = $("#msg").val();
+			if(msg){
+				var url = 'https://lwx01.herokuapp.com/postcomment?msg=' +encodeURIComponent(msg);
+				$.get(url,function(data){
+					alert(JSON.stringify(data,null,'\t'));
+				});
+				
+			}
+			 
+		})
+	</script>
+	 
+	 
+</body>
+</html>

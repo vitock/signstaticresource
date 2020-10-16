@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="description" content="ECC 加密 椭圆曲线">
+    <meta name="viewport" content="width=device-width,inital-scale=1">
+    <title>ECC 椭圆曲线加密工具</title>
+    <style>
+        .submit {
+            width: 100px;
+            height: 40px;
+            color: white;
+            font-size: 20px;
+            border-radius: 5px;
+            background-color: cornflowerblue;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            line-height: 40px;
+            font-size: 16px;
+        }
+        .row{
+            flex-direction: row;
+        }
+
+        .key{
+            height: 30px;
+            width: 80%;
+        }
+        .ecbtn{
+            width: 80%px;
+            margin-top: 40px;
+        }
+        .rb{
+            display: inline-flex;
+            margin-left: 80px;
+        }
+
+        #msg{
+            height: 100px;
+            width: 80%;
+        }
+        #result{
+            height: 100px;
+            width: 80%;
+        }
+        .desc{
+            width: 80%;
+            font-size: 18px;
+            color: #555555;
+            padding-left: 20px;
+            padding-top: 20px;
+            padding-bottom: 20px;
+            padding-right: 20px;
+
+            line-height: 25px;
+
+        }
+        .note{
+            color: orangered;
+            font-weight: 600;
+
+        }
+        a{
+            font-style:italic;
+            font-weight: 500;
+            letter-spacing: 2px;
+        }
+    </style>
+
+
+ 
+</head>
+<body>
+    <script type="text/javascript" src="https://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+    <div class="desc">
+        
+            <a href='https://zh.wikipedia.org/wiki/%E6%A4%AD%E5%9C%86%E6%9B%B2%E7%BA%BF%E5%AF%86%E7%A0%81%E5%AD%A6'>ECC(Elliptic Curve Cryptography)</a>椭圆曲线加密,公钥用来加密,私用用来解密,公钥加密的数据有且只能用私钥解密,公钥无法解密。
+            <br>ECC的主要优势是它相比RSA加密算法使用较小的密钥长度并提供相当等级的安全性, 256 位的 ECC加密,破解难度等效于2048位密钥的RSA加密
+            <p>
+            本网站生成的加密曲线参数
+            secp256k1 curve, only SHA-512 (KDF), HMAC-SHA-256 (HMAC) and AES-256-CBC ;
+
+            <br>
+            加密过程说明,
+            <br>
+            <br>1.随机生成aes256密钥 skey ,和 初始向量iv, 加密数据m 获得加密数据cipher,原始数据的 mac
+            <br>2,采用公钥加密key 获得 加密的key2
+            <br>3.返回 iv  mac key2 cipher
+
+            <p>
+            <br> 加密结果的结构
+            <br> 0-1字节表示 iv 字段的长度, 2-3字节表示校验位的长度, 4-5 随机加密后aes密钥的长度 ,6-9 0 预留字节,
+            <br>10字节以后后面依次是 iv, mac校验位,加密后的aes 可以长度,加密后的数据
+
+            <p>
+            <text class="note">由于前10个字节表示的是结构信息,都是一样的(0x00100020 0x00410000 0x0000),所以加密前几个字母是一样的 ABAAIABBAAAAA</text>
+            <br>不要惊慌。
+            
+         
+    </div>
+    
+    <div class="submit" id="genkeypair">生成密钥对 </div>
+    <p>
+    <div class="row">
+        <text>公钥</text>
+        <input class="key" id="pubkey" ></input>
+    </div>
+
+    <div class="row">
+        <text>私钥</text>
+        <input class="key" id='prikey' ></input>
+    </div>
+    
+    <div class="row ecbtn">
+        <div class="submit rb" id="enc">加密</div>
+        <div class="submit rb" id="dec">解密</div>
+    </div>
+    <textarea id='msg' placeholder="需要加密活解密的字符串" autocomplete="off" ></textarea>
+    <div style="margin-top: 20px;">结果</div>
+
+    <textarea id='result' placeholder="结果" autocomplete="off"></textarea>
+    
+    
+    <script>
+        $('#genkeypair').click(function(){
+            $.ajax({
+                url:  '//lwx01.herokuapp.com/gen_ecc?t='+new Date().getTime(),
+                type: 'Get',
+                dataType: 'json',
+                error:function(e){
+			 
+                    console.log(e);
+                    alert("出错" + JSON.stringify(e));
+                },
+                success:function(data){
+                    $("#prikey").val(data.privatekey);
+                    $("#pubkey").val(data.publickey);
+                }
+            })
+        })
+
+        function setresult(msg){
+            $("#result").val(msg);
+        }
+
+        $('#enc').click(function(){
+
+            var key = $("#pubkey").val();
+            if(!key){
+                setresult('请先填写公钥')
+                return;
+            }
+
+            var msg = $("#msg").val();
+            if(!msg){
+                setresult('需要加解密的信息')
+                return;
+            }
+
+            $.ajax({
+                url:  '//lwx01.herokuapp.com/ecc_enc?',
+                // url:  '//127.0.0.1:3001/ecc_enc?',
+                type: 'Post',
+                dataType: 'json',
+                data:{
+                    msg:msg,
+                    pubkey:key
+                },
+                error:function(e){
+			 
+                    console.log(e);
+                    alert("出错" + JSON.stringify(e));
+                },
+                success:function(data){
+                    setresult(data.enc||data.err)
+                }
+            })
+        })
+        
+        $('#dec').click(function(){
+
+            var key = $("#prikey").val();
+            if(!key){
+                setresult('请先填写私钥')
+                return;
+            }
+
+            var msg = $("#msg").val();
+            if(!msg){
+                setresult('需要加解密的信息')
+                return;
+            }
+
+            $.ajax({
+                url:  '//lwx01.herokuapp.com/ecc_dec?',
+                // url:  '//127.0.0.1:3001/ecc_dec?',
+                type: 'Post',
+                dataType: 'json',
+                data:{
+                    msg:msg,
+                    prikey:key
+                },
+                error:function(e){
+                    console.log(e);
+                    alert("出错" + JSON.stringify(e));
+                },
+                success:function(data){
+                    setresult(data.dec || data.err)
+                }
+            })
+        })
+        
+    </script>
+    
+    
+   
+</body>
+</html>

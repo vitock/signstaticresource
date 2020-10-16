@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="description" content="IT 之家自动签到">
+	<meta name="viewport" content="width=device-width,inital-scale=1">
+	<title>IT 之家自动签到</title>
+	<style type="text/css">
+		div {
+			text-align: left;
+			margin-top: 20px;
+		}
+
+		#clock {
+			margin-left: 10px;
+			;
+		}
+
+		#randomImage {
+			width: 350px;
+			display: none;
+
+		}
+
+		#title {
+			display: none;
+		}
+
+		#count {
+			display: none;
+			color: red;
+			font-size: 20px;
+			margin-left: 20px;
+		}
+
+		#history {
+			display: none;
+		}
+
+		.history {
+			text-align: left;
+			font-size: 15px;
+			line-height: 38px;
+
+			display: block;
+		}
+
+		.desc {
+			font-size: 18px;
+			padding-top: 10px;
+			padding-bottom: 10px;
+			margin-left: 10px;
+			color: red;
+		}
+		.ti{
+			font-size: 16pt;
+		}
+		input{
+			font-size: 16pt;
+		}
+
+		.form {
+			text-align: left;
+			padding-left: 10px;
+		}
+
+		.submit {
+			width: 200px;
+			height: 50px;
+			color: white;
+			font-size: 20px;
+			border-radius: 5px;
+			background-color: cornflowerblue;
+			align-items: center;
+			justify-content: center;
+			text-align: center;
+			line-height: 50px;
+
+		}
+		.ani{
+			display: flex;
+			flex-direction: row;
+		}
+		@keyframes mymove
+		{
+			from {transform: scaleY(1.0)}
+			to {transform: scaleY(0.1);}
+			
+			
+		}
+
+		.rec{
+			background-color: #333333;
+			height: 100px;
+			width: 10px;
+			margin-left: 10px;
+
+		}
+		.a1{
+			animation: mymove 0.6s linear  infinite alternate;
+			-webkit-animation: mymove 0.6s linear  infinite alternate ;
+
+		}
+		.a2{
+			animation: mymove 0.7s  linear 0.2s  infinite alternate;
+			-webkit-animation:  mymove 0.7s  linear 0.2s  infinite alternate;
+		}
+
+		.a3{
+			animation: mymove 0.8s  linear 0.25s  infinite alternate;
+			-webkit-animation: mymove 0.8s  linear 0.2s  infinite alternate;
+		}
+
+		.a4{
+			animation: mymove 0.9s  linear 0.3s  infinite alternate;
+			-webkit-animation: mymove 0.9s  linear .3s  infinite alternate;
+		}
+		 
+		 .code{
+			 font-size: 13px;
+		 }
+		
+	</style>
+</head>
+
+<body>
+	<img src='https://imxsw.herokuapp.com/'>
+	<div>
+		<canvas id="clock" height="200px" width="200px"></canvas>
+	</div>
+	<h1>IT之家 自动签到程序<h1>
+	<a  href='../' > 功能说明 </a>  
+	<text class="desc">安全提醒,强烈请您确保你的IT之家密码是唯一的,不会和其他网站重复. <br>
+		(虽然上本站不会保存密码,只是获取hash用于签到)</text>
+		<br>
+	<a  href='https://suijimimashengcheng.51240.com/' >生成一个随机密码 </a>  
+	 
+
+	<div class="fff">
+		<form class="form">
+			<p class="ti">邮箱/手机号: <input type="text" name="usr" placeholder="邮箱/手机号" /></p>
+			<p class="ti" >密码: <input type="text" name="psw" /></p>
+
+		</form>
+		<div id="submit" class="submit" >提交</div>
+	</div>
+
+	<div class="ani">
+		<div class="rec a1"> </div>
+		<div class="rec a2"> </div>
+		<div class="rec a3"> </div>
+		<div class="rec a4"> </div>
+		
+	</div>
+
+
+	<script type="text/javascript" src="https://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+	<script type="text/javascript" src="clock.js?v=a1211"></script>
+	<script>
+		function genpsw(){
+			$(".recopsw").text((Math.random() ).toString(16).substr(2,12));
+		}
+		$.ajax({
+			url: "https://lwx01.herokuapp.com/s",
+			type: 'Get'
+		});
+
+		$(".fff").show();
+		$(".ani").hide();
+
+		var hosturl = "https://lwx01.herokuapp.com/addUser"
+		$('#submit').click(function () {
+		 
+			$(".fff").hide();
+			$(".ani").show();
+			post = true;
+			$.ajax({
+				url: hosturl,
+				type: 'Get',
+				dataType: 'json',
+				data: $('.form').serialize(),
+				error:function(e){
+					$(".fff").show();
+					$(".ani").hide();
+					console.log(e);
+					alert("出错" + JSON.stringify(e));
+				},
+				success: function (data) {
+					post = false;
+
+					$(".fff").show();
+					$(".ani").hide();
+					if (data && data.succ == 1) {
+						alert("成功");
+					}
+					else {
+						alert(data.msg);
+					}
+				},
+
+			});
+		});
+
+	</script>
+	<script type="text/javascript" src="app.js?v=a111"></script>
+
+
+
+	<div id="submit2"  class="submit">提交留言</div>
+	<textarea class="tfmsg" name="" value='' placeholder="留言" id="msg" cols="30" rows="10"></textarea>
+	<script src="https://gist.github.com/vitock/33ea1af1f69af05d57b763bdf3cc6964.js"></script>
+	<script type="text/javascript" src="https://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+	<script>
+		$('#submit2').click(function(){
+			var msg = $("#msg").val();
+			if(msg){
+				var url = 'https://lwx01.herokuapp.com/postcomment?msg=' +encodeURIComponent(msg);
+				$.get(url,function(data){
+					alert(JSON.stringify(data,null,'\t'));
+				});
+				
+			}
+			 
+		})
+	</script>
+	
+</body>
+
+</html>
