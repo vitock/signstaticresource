@@ -27,36 +27,32 @@ var getRandomColor = function(index){
 
 function draw(time){
  
+
 	ctx.clearRect(0,0,width,height)
 
 	var dJ = 0,dX =0;
-	for (var  j = 0,dJ = 14 + 3 * Math.cos(time/400 + j/40) ; j < height; j += dJ) {
-		for (var index = 0,  dX = 14 + 3 * Math.sin(time/300 + (j /50 + index%40)) ; index < width; index += dX  ) {
-			 
+	for (var  j = 0; j < height; j += dJ) {
+		dJ = 8 + 5 * Math.abs(Math.cos(time/500  +  j/50));
+		for (var index = 0 ; index < width; index += dX  ) {
+			dX = 8 + 5 * Math.abs( Math.sin(time/500  +   index/50))
 			y = j;
 
 		 
-
-
-			
-
-
-
-			ctx.fillStyle = `rgb(${ Math.abs(Math.sin(time/153 + (2 * index + j)  / 30)) * 255},${Math.abs(Math.cos(time/151 + (index + 2 * j ) / 30)  ) * 255},${Math.abs(Math.cos(time/152 + (  index + j )  / 30)) * 255})`;
-			// `rgb(${r * 255 },${g * 255 },${b * 255})`;
+ 
+			// ctx.fillStyle = `rgb(${ Math.abs(Math.sin(dX+ dJ + ( index * j) / 150)) * 255},${Math.abs(Math.cos(dX+ ( index * j) / 150)  ) * 255},${Math.abs(Math.cos(dX+ ( index * j) / 150)) * 255})`;
+			ctx.fillStyle = '#c3c3c3';
 			ctx.fillRect(index,y   ,dX - 2 ,dJ -2);
 	   }
 
 	}
 
-	time /= 20;
-	let start =  Math.floor(time/550);// -width/2;
+	
+	time /= 5;
+	let start =   Math.floor(  width /5  *  Math.sin(time/300));// -width/2;
 	
 	for (let index = start; index < width + start; index += 4) {
-		var  x1 =  Math.pow(Math.abs(index),0.3) +  Math.cos(Math.pow(Math.abs(index),0.4 )  +   (time + index) / 100 ) * 2 + 2;
-		var y =  Math.pow(Math.abs(index),0.5) +  (x1   * (Math.sin(x1 ) + 3 + x1 * 1.5 ) ) + Math.tan(Math.cos(time/30 + index/100));
-		y = y + (x1 + 4) * (x1 + 5) + 4 * Math.cos(index/51 + time/30) + 5 * Math.sin(index/31 +  time/110);
-
+		var  x1 =  Math.pow(Math.abs(index + time),0.5) +  Math.cos(Math.pow(Math.abs(index),0.4 )  +   (time + index) / 100 ) ;
+		var y = 200*  Math.sin(x1) + 10 *  Math.pow( Math.abs(index),0.4);
 
   
 
@@ -82,7 +78,7 @@ function draw(time){
 		}
 		y = Math.floor(y);
 		const i = Math.abs(index % 3);
-		ctx.fillStyle = '#000' ;//  i  == 1 ? '#00f': i == 2 ?  '#f00' :'#0f0';  
+		ctx.fillStyle = '#000'; i  == 1 ? '#00f': i == 2 ?  '#f00' :'#0f0';  
 		ctx.fillRect(index -start , y  ,4,4);
    }
 	 
