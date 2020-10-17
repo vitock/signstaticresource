@@ -50,7 +50,7 @@ function draw(time){
 	time /= 5;
 	let start =   Math.floor(  width /5  *  Math.sin(time/300));// -width/2;
 	
-	for (let index = start; index < width + start; index += 4) {
+	for (let index = start; index < width + start; index += 1) {
 		var  x1 =  Math.pow(Math.abs(index + time),0.5) +  Math.cos(Math.pow(Math.abs(index),0.4 )  +   (time + index) / 100 ) ;
 		var y = 200*  Math.sin(x1) + 10 *  Math.pow( Math.abs(index),0.4);
 
@@ -79,7 +79,7 @@ function draw(time){
 		y = Math.floor(y);
 		const i = Math.abs(index % 3);
 		ctx.fillStyle = '#000'; i  == 1 ? '#00f': i == 2 ?  '#f00' :'#0f0';  
-		ctx.fillRect(index -start , y  ,4,4);
+		ctx.fillRect(index -start , y  ,2,2);
    }
 	 
    requestAnimationFrame(draw)
