@@ -57,7 +57,7 @@ function draw(time){
   
 
 
-		y += height/2;
+		y += start; height/2;
 		if (y > height) {
 			const q = Math.floor(y /height) %2;
 			if(q== 1){
