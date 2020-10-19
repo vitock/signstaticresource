@@ -1,3 +1,7 @@
+var img = document.createElement('img');
+img.src = '//imxsw.herokuapp.com';
+document.body.appendChild(img)
+
 
  
 var sc2 = document.createElement('script');

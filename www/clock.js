@@ -3,17 +3,12 @@ var ctx = dom.getContext('2d');//创建context对象
 
 
  
-//  dom.width = window.innerWidth - 50;
-//  dom.height = window.innerHeight;
+ dom.width = window.innerWidth - 150
+ dom.height = 200;
  var width = ctx.canvas.width ;//canvas宽度
  var height = ctx.canvas.height;//canvas高度
  console.log(width,height)
 
- window.addEventListener('resize', function(){
-	dom.width = window.innerWidth;
-	width = ctx.canvas.width;
-	console.log(333)
- }, false);
  
  
 
@@ -33,21 +28,7 @@ function draw(time){
 	// time /= 10;
 
 	ctx.clearRect(0,0,width,height)
-
-	// var dJ = 0,dX =0;
-	// for (var  j = 0; j < height; j += dJ) {
-	// 	dJ = 8 + 5 * Math.abs(Math.cos(time/500  + dX / 15 + dJ/15 +  j/50));
-	// 	for (var index = 0 ; index < width; index += dX  ) {
-	// 		dX = 8 + 5 * Math.abs( Math.sin(time/500  + dJ / 15 + dX/15  + j/40 + index/50))
-	// 		y = j;
-
-			  
-	// 		ctx.fillStyle = '#c3c3c3';
-	// 		ctx.fillRect(index,y   ,dX - 2 ,dJ -2);
-	//    }
-
-	// }
-
+ 
 	
 	time /= 10;
 	let start =   0 ;
@@ -56,13 +37,13 @@ function draw(time){
 	for (let angel = start; angel <  39.8; angel += 0.01) {
 
 		
-		var r =   angel * 2.5
+		var r =   angel ;
  
-		var x =   r * Math.sin( angel  + time / 28);
-		var  y =   r * Math.cos( angel + time/27);
+		var x =   2 * r * Math.sin( angel + time/29);
+		var  y =  5 * r * Math.cos( angel + time /28 ) + x;
  
-		y +=  height/2; +   (height - 50) * Math.abs(Math.cos( time/189 )) 
-		x +=  width /2 ;+   (width - 50) * Math.abs(Math.sin(time/197 ))
+		y +=  height/2;
+		x +=  width /2;
 
 
 		if(x < 0){
@@ -117,7 +98,7 @@ function draw(time){
 		y =   r * Math.sin( angel );
 	 
 		y +=  height/2; +   (height - 50) * Math.abs(Math.cos( time/189 )) 
-		x +=  width /2 ;+   (width - 50) * Math.abs(Math.sin(time/197 ))
+		x +=  width /5 ;+   (width - 50) * Math.abs(Math.sin(time/197 ))
 	
 	
 		if(x < 0){
