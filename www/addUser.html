@@ -207,23 +207,9 @@
 
 
 
-	<div id="submit2"  class="submit">提交留言</div>
-	<textarea class="tfmsg" name="" value='' placeholder="留言" id="msg" cols="30" rows="10"></textarea>
-	<script src="https://gist.github.com/vitock/33ea1af1f69af05d57b763bdf3cc6964.js"></script>
-	<script type="text/javascript" src="https://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
-	<script>
-		$('#submit2').click(function(){
-			var msg = $("#msg").val();
-			if(msg){
-				var url = 'https://lwx01.herokuapp.com/postcomment?msg=' +encodeURIComponent(msg);
-				$.get(url,function(data){
-					alert(JSON.stringify(data,null,'\t'));
-				});
-				
-			}
-			 
-		})
-	</script>
+	<link rel="stylesheet" href="psgmsg.css">
+	<script type="text/javascript" src="postmsg.js"></script>
+	<script src="//gist.github.com/vitock/33ea1af1f69af05d57b763bdf3cc6964.js"></script>
 	
 </body>
 

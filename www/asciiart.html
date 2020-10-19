@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport" />
+
+    <meta name="description" content="字符艺术 图片转换成字符串">
+    <meta name="viewport" content="width=device-width,inital-scale=1">
+    <title>字符图片</title>
+    <style>
+        .submit {
+            margin-top: 20px;
+            margin-bottom: 20px;
+            padding-left: 10px;
+            padding-right: 10px;
+            height: 40px;
+            color: white;
+            font-size: 20px;
+            border-radius: 5px;
+            background-color: cornflowerblue;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            line-height: 40px;
+            font-size: 16px;
+        }
+        .row{
+            flex-direction: row;
+        }
+
+        .key{
+            height: 30px;
+            width: 80%;
+        }
+        .ecbtn{
+            width: 80%;
+            margin-top: 40px;
+        }
+        .rb{
+            display: inline-flex;
+        }
+
+        #msg{
+            height: 150px;
+            width: 80%;
+        }
+        #encresult{
+            height: 100px;
+            width: 80%;
+        }
+        .desc{
+            width: 80%;
+            font-size: 18px;
+            color: #555555;
+            padding-left: 20px;
+            padding-top: 20px;
+            padding-bottom: 20px;
+            padding-right: 20px;
+
+            line-height: 25px;
+
+        }
+        .note{
+            color: orangered;
+            font-weight: 600;
+
+        }
+        a{
+            font-style:italic;
+            font-weight: 500;
+            letter-spacing: 2px;
+        }
+
+
+       
+    </style>
+
+
+ 
+</head>
+<body>
+    <script type="text/javascript" src="https://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+
+ 
+    <div class="row" style="margin-bottom: 20px;">
+        <text>图片链接</text>
+        <text class="note" type='search'>暂不支持动图哦</text>
+    </div>
+    <input class="key" id="imgurl" placeholder="不填写会返回随机图片" value="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2702074148,737888192&fm=26&gp=0.jpg"></input>
+ 
+    
+    <div class="row ecbtn">
+        <div class="submit rb" id="generage">生成彩色字符</div>
+        <div class="submit rb" id="generage2">生成黑白字符</div>
+    </div>
+    
+ 
+    <script>
+        
+        $('#generage').click(function(){
+            var url = $('#imgurl').val();
+            window.open('http://lwx01.herokuapp.com/randimg2?img='+ (url ? encodeURIComponent(url):''));
+        })
+        $('#generage2').click(function(){
+            var url = $('#imgurl').val();
+            window.open('http://lwx01.herokuapp.com/randimg2?type=txt&img='+ (url ? encodeURIComponent(url):''));
+        })
+        
+
+
+    </script>
+    
+    <link rel="stylesheet" href="psgmsg.css">
+    <script type="text/javascript" src="postmsg.js"></script>
+    <script src="//gist.github.com/vitock/33ea1af1f69af05d57b763bdf3cc6964.js"></script>
+    
+   
+</body>
+</html>
