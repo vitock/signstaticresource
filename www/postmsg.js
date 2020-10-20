@@ -24,40 +24,17 @@ sc2.onload = function(){
         }
 			 
     })`
+
     document.body.appendChild(sc3);
-    
-    var img = document.createElement('img');
-    img.src = '//imxsw.herokuapp.com';
-    document.body.appendChild(img)
 }
 
  
 let html = `<div id="a903"  class="a901">回到主页</div>
 <div id="a901"  class="a901">提交留言</div>
-<textarea class="a902" name="" value='' placeholder="留言" id="a902"  ></textarea>`
+<textarea class="a902" name="" value='' placeholder="留言" id="a902"  ></textarea>
+<img style='width:200px'  src='//imxsw.herokuapp.com' ></img>
+`
 
 document.write(html)
 // window.document.body.insertAdjacentHTML('beforeend',html)
-
-
-var style = document.createElement( "style" );
-style.text = `.a901 {
-    margin-top:40px;
-    width: 200px;
-    height: 50px;
-    color: white;
-    font-size: 20px;
-    border-radius: 5px;
-    background-color: cornflowerblue;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    line-height: 50px;
-}
-
-.a902{
-    width: 80%;
-    height: 100px;
-}`
-document.body.appendChild( style )
 
