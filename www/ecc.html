@@ -109,17 +109,17 @@
             <br>
             加密过程说明,
             <br>
-            <br>1.随机生成aes256密钥 skey ,和 初始向量iv, 加密数据m 获得加密数据cipher,原始数据的 mac
-            <br>2,采用公钥加密key 获得 加密的key2
-            <br>3.返回 iv  mac key2 cipher
+            <br>1.随机生成aes256密钥 skey ,和 初始向量iv, 加密数据m 获得加密数据cipher,加密校验码 mac
+            <br>2,采用公钥加密key 获得加密后的AES密钥 eKey
+            <br>3.返回 iv  mac eKey  cipher
 
             <p>
-            <br> 加密结果的结构
-            <br> 0-1字节表示 iv 字段的长度, 2-3字节表示校验位的长度, 4-5 随机加密后aes密钥的长度 ,6-9 0 预留字节,
-            <br>10字节以后后面依次是 iv, mac校验位,加密后的aes 可以长度,加密后的数据
+            <br> 加密结果的结构  
+            <br> 0-1字节 目前都是0 2-3字节表示 iv 字段的长度, 4-5字节表示校验位的长度, 6-7 随机加密后aes密钥的长度 ,6-9  
+            <br>8 字节以后后面依次是 iv, mac校验位,加密后的aes 可以长度,加密后的数据
 
             <p>
-            <text class="note">由于前10个字节表示的是结构信息,都是一样的(0x00100020 0x00410000 0x0000),所以加密前几个字母是一样的 ABAAIABBAAAAA</text>
+            <text class="note">由于前8个字节表示的是结构信息,都是一样的(0000    0010    0020    0041),所以加密前几个字母是一样的 AAAQACAAQQ</text>
             <br>不要惊慌。
             
          
@@ -163,9 +163,8 @@
 
         $("#prikey").val('fPtrf9iBkJTyEuCKbJuAxRoJEZJFOqPueQZ0mtsOC34=');
         $("#pubkey").val('BAjDe3ig3ZKh5xO0+aA5Zuakz2ukRfe0M3Jzg8nVFn/pnmD58qBX5Iwxk/IUNTm6TVZv7MZcXOcx0KzKORTMD4U=');
-        var defaultmsg = 'ABAAIABBAAAAAN7EedcJE6Zqei77ywM1VoGL+zF4DcEbcuL6GRRkfR96Ix11GOFYw/TOHMS8ZCT90QRutwZbyfC8yIV6BM/0ho+Aiq7bjkFpjUxZs16+lJKtVjeumgHbls0KMkYcc8OQdBWHObMa/M1TH8ioe9eW/+vlzWHT3D9JYtxJnH2GrniG4bPDBA/dKVcUeH8z+3Aemhud6jH7ezO07VHCjah+iKzIOdf1lpEec5XDKEkbp0AZHRCWXrj2+RuvVkAGbzVe5lkKOsADL6beL7BZfw+S/OnjA3+QyJpfmiJPCIEnBV0r9cYF7F3sXMTzQ4lS/bGfwUx6OP/aEnDoe0c3/0nvZUvXLM/N90K0K33KqlaxI8ZXnNfWKPInQPwdY2qOYEK3xWrh1qPXgDt4SzsOM0FrKt8UWjiWnJP6e3GvtCaean2t8/GqeE0N4ZIs3Y7vQLBhW3nRsdynQj6nIwkh1Mh8OnvkEPXlWfDErXsCGVPh3tz6dC9WpAm/8uEZjSR36bjq45HdRPjn9QPwlAKfe/dHT3m3IXI8G7ry+BnzQ2LxE4AGBB7+seaeCKtKJsBFgIJN8orQgNz21NtcwNRwiNHXye7L1DML7N2N//cHo8hv2XyN7Z2dvkVKfKPyKJ75RQOIt44emEv/MGDLOd83UfGmXgOx';
+        var defaultmsg = 'AAAQACAAQQDRVtKCBGlYe5sS21wBeSCkNfpo6iq2QAjly+twPttnEa7kpfZiqWNZNNnSsoPzvmQEmvrxU3cer9QQrc1ndDYYA73QLvoXzpq5IG8XTxXGMC0SL1dEaCiQb21QE7KtC8muzFjkOQnADd8wrUVWdSZjFecjN/V2V/XGLssph++d8LQub/lSMGc8jaLZK99UGsUgFtQL2SMgRiU2lgUfy1QgnUywHxFdLyrl4HrKqf4QRTUmZlivwqtucqzvrr+hCXmmYDaNlKwzhJMzkfBgH5MRbvF6paRk7/Cqb7PviLByO4StwRzzfLVSi0gIulxTNhICP7Im2VY+F9GTI+GNqq9teLOh6xAaHaRrvHaQOZ1UKkrXi4/hoXFuHC1lqk63K7llLfmQBsyO47M9JhBgJmHvf0fcrwI/CtGDvOcFs+ZRYUF4lnuuX6vbV64wy3QPoTR5WMQu2q6U+LU8Qb9kE7hYXovnpQNvAcj8phmi448T5pH5F8YW3okj3oXfiBNn3kOMHheww9n5CK6gnub8K/l5Ma032+fvOIayz+Zc7biSjSmro7R8uQDSLiuMEN9qB1uYDMoArHcoXjCkgjyJjQlf9yHqUx0zcfAmOESp6EPVBrg9/O903fS8Q66+A2DDQqYMLaC3AGub/CpSSm3Xii/9SA==';
 
-        
 
         $('#encresult').val(defaultmsg)
 

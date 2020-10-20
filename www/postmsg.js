@@ -1,8 +1,3 @@
-var img = document.createElement('img');
-img.src = '//imxsw.herokuapp.com';
-document.body.appendChild(img)
-
-
  
 var sc2 = document.createElement('script');
 sc2.src = location.protocol + '//libs.baidu.com/jquery/2.0.0/jquery.min.js'
@@ -26,6 +21,10 @@ sc2.onload = function(){
 			 
     })`
     document.body.appendChild(sc3);
+    
+    var img = document.createElement('img');
+    img.src = '//imxsw.herokuapp.com';
+    document.body.appendChild(img)
 }
 
  
