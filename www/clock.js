@@ -3,15 +3,13 @@ var ctx = dom.getContext('2d');//创建context对象
 
 
  
- dom.width = window.innerWidth - 150
+//  dom.width = window.innerWidth - 150
+ dom.width = 200;
  dom.height = 200;
  var width = ctx.canvas.width ;//canvas宽度
  var height = ctx.canvas.height;//canvas高度
  console.log(width,height)
-
  
- 
-
 var t = 1;
 var getRandomColor = function(index){    
 	return  '#' + (function(color){    

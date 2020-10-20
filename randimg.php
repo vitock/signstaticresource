@@ -1,1 +1,1 @@
-<?php header( 'Location: www/index.html' ) ; ?>
+<?php header( 'Location: https://lwx01.herokuapp.com/randImg' ) ; ?>

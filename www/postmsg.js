@@ -6,7 +6,11 @@ document.body.appendChild(sc2);
 
 sc2.onload = function(){
     var sc3 = document.createElement('script');
-    sc3.text = `$('#a901').click(function(){
+    sc3.text = `
+    $('#a903').click(function(){
+        location.href = location.protocol + '//' + location.host;
+    })
+    $('#a901').click(function(){
         var msg = $("#a902").val();
 
         if(msg){
@@ -28,7 +32,8 @@ sc2.onload = function(){
 }
 
  
-let html = `<div id="a901"  class="postmsg">提交留言</div>
+let html = `<div id="a903"  class="a901">回到主页</div>
+<div id="a901"  class="a901">提交留言</div>
 <textarea class="a902" name="" value='' placeholder="留言" id="a902"  ></textarea>`
 
 document.write(html)
@@ -36,8 +41,7 @@ document.write(html)
 
 
 var style = document.createElement( "style" );
-style.type = "text/css";
-style.text = `#a901 {
+style.text = `.a901 {
     margin-top:40px;
     width: 200px;
     height: 50px;
@@ -49,7 +53,6 @@ style.text = `#a901 {
     justify-content: center;
     text-align: center;
     line-height: 50px;
-
 }
 
 .a902{

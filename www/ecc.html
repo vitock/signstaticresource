@@ -124,9 +124,7 @@
             
          
     </div>
-    <canvas  id="clock" height="200px" style="height: 200px;width:100%;"></canvas>
-    <script type="text/javascript" src="clock.js?v=2"></script>
-    
+     
     <div class="row">
         <div class="submit" id="genkeypair">重新生成密钥对 </div>
         <text class="note">注:重新生成后, 旧有密文没有对应密钥不能解密。</text>
@@ -163,7 +161,11 @@
 
         $("#prikey").val('fPtrf9iBkJTyEuCKbJuAxRoJEZJFOqPueQZ0mtsOC34=');
         $("#pubkey").val('BAjDe3ig3ZKh5xO0+aA5Zuakz2ukRfe0M3Jzg8nVFn/pnmD58qBX5Iwxk/IUNTm6TVZv7MZcXOcx0KzKORTMD4U=');
-        var defaultmsg = 'AAAQACAAQQDRVtKCBGlYe5sS21wBeSCkNfpo6iq2QAjly+twPttnEa7kpfZiqWNZNNnSsoPzvmQEmvrxU3cer9QQrc1ndDYYA73QLvoXzpq5IG8XTxXGMC0SL1dEaCiQb21QE7KtC8muzFjkOQnADd8wrUVWdSZjFecjN/V2V/XGLssph++d8LQub/lSMGc8jaLZK99UGsUgFtQL2SMgRiU2lgUfy1QgnUywHxFdLyrl4HrKqf4QRTUmZlivwqtucqzvrr+hCXmmYDaNlKwzhJMzkfBgH5MRbvF6paRk7/Cqb7PviLByO4StwRzzfLVSi0gIulxTNhICP7Im2VY+F9GTI+GNqq9teLOh6xAaHaRrvHaQOZ1UKkrXi4/hoXFuHC1lqk63K7llLfmQBsyO47M9JhBgJmHvf0fcrwI/CtGDvOcFs+ZRYUF4lnuuX6vbV64wy3QPoTR5WMQu2q6U+LU8Qb9kE7hYXovnpQNvAcj8phmi448T5pH5F8YW3okj3oXfiBNn3kOMHheww9n5CK6gnub8K/l5Ma032+fvOIayz+Zc7biSjSmro7R8uQDSLiuMEN9qB1uYDMoArHcoXjCkgjyJjQlf9yHqUx0zcfAmOESp6EPVBrg9/O903fS8Q66+A2DDQqYMLaC3AGub/CpSSm3Xii/9SA==';
+        var hlm = 'AAAQACAAQQAVcxZpyC9b2rnX+3aTYUZcdzTgCn5YEPHQ1ZqpE12wjOkt8LKKsV87kg4U9zlCAJUE0OoWOBnVPJiR9QgaY7SKSqYB/lKwJ0+FrfwMwxduO4M1iVPEs4nqdJorfxUGwZwZLSqUz6PsHqpN9vrr11afGuTC5FN0WG6XNBOOcOL+glPmBbU1R3AQxca3NAYsiW2Z/PhbzV30cL8LCoPg4s1ssPxwZTSgpRL98pNpoE+ME5xv82+Wrgf6rCqIVw0GquyJU7lKKYnptG74t0whUfVQf4nbq7SY2DwvOK0B1QMoswunF98sgs69SvPDdArB1W4EnVPAcWtNzl0DdbYLnx91gS+KYZUbEF5XtG4N6BJrUijwuKr9tWPrHHOYphycBolEM7YUNg/ckeJT5sFHaT+EKQEBOR4CaTFye6nlp6r9HNQY9LcPXaD5aP+S4M9BwznDwTGB0zKIQtpWkZrxCU76BD2OULW2/ZE4RoV/HVv/jDkUl6+T6KlbkQLDVBB8rr0LBhJV82GGJOUhSvxUoSJ/YSKfrT9GhEfSoaeHmYf9hQJ/usi7LaVDiV40Ac21ETflg0r2CnDSDb4kPvUNMJLKkz2BwbLcEU0QebvmLKKo/1IorzYfJAsvBF7pSBJC0hjSjeJRg0T6Apnqurnff414uwdulXgeIhD0AtajaZqyj/xDtXw1/sgLY5p2p2duV0+PpzbLznBXNDoJum6lUvLKHKw5O63geXEL8fdDUFdSUOgLpEYgi+K+fnwcRUP/POTNmAZuTzSft2cwTLcKukC24IQ79Kl0fWn6u/MhqBuUNJS2IqamZvRq0psHblOF3/8yU0Jnmv/GsccZvJOoXITLhFunJb4uU8EtaI225tGJPJ34cOltG9KweN7dzvd7bKqoL1Z1vbJtqzGE1wijtPgDOVKEZfGlcCVqWfejRxJpa36aglDfOHTUfFBECc4gCg2QOVh6g3vcSGQHbADGpHCm8Mh54x7mnLbnYmfksXNr3cZOr4Kl6cXQKhxbW/IkmqkLNrN45ptxkKXTSehwgUw4ocSpyc6/js7Ll7b+9NWaViqJkNeR8E1MykyTTHMqmRJtBMh2HDvRYU3lNsV+qVKmNvV2m8EdXWsQtNanVY+HCOj//YDu4a84YsK37zHFIkFfWxAoB3WIqTbWDuCooI6p0NmanHyVVd+kJaFqPKA3/+Q=';
+        var defaultmsg = hlm;
+        if(Math.random() < 0.5){
+            defaultmsg = hlm;
+        }
 
 
         $('#encresult').val(defaultmsg)
@@ -184,8 +186,6 @@
                 }
             })
         })
-
-
         $('#enc').click(function(){
 
             var key = $("#pubkey").val();
@@ -261,7 +261,7 @@
     
 
     <link rel="stylesheet" href="psgmsg.css">
-    <script type="text/javascript" src="postmsg.js"></script>
+    <script type="text/javascript" src="postmsg.js?v=2"></script>
     <script src="//gist.github.com/vitock/33ea1af1f69af05d57b763bdf3cc6964.js"></script>
    
 </body>
