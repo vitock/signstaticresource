@@ -29,7 +29,9 @@ sc2.onload = function(){
 }
 
  
-let html = `<div id="a903"  class="a901">回到主页</div>
+let html = `
+<div  class="a904"></div>
+<div id="a903"  class="a901">回到主页</div>
 <div id="a901"  class="a901">提交留言</div>
 <textarea class="a902" name="" value='' placeholder="留言" id="a902"  ></textarea>
 <p>

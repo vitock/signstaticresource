@@ -2,19 +2,26 @@
     margin-top:20px;
     margin-bottom: 20px;
     width: 200px;
-    height: 50px;
+    height: 40px;
+    line-height: 40px;
     color: white;
     font-size: 20px;
     border-radius: 5px;
-    background-color: cornflowerblue;
+    background-color:orange;
     align-items: center;
     justify-content: center;
     text-align: center;
-    line-height: 50px;
-
 }
 
 .a902{
     width: 80%;
     height: 100px;
+}
+
+.a904{
+    width: 100%;
+    height: 1px;
+    border-top-style: dashed;
+    border-color: aquamarine;
+    margin-top: 30px;
 }

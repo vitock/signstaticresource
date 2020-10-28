@@ -120,6 +120,10 @@
 		 .code{
 			 font-size: 13px;
 		 }
+
+		 .newpsw{
+			 display:inline-flex
+		 }
 		
 	</style>
 </head>
@@ -127,11 +131,16 @@
 <body>
  
 	<h1>IT之家 自动签到程序<h1>
-	<a  href='../' > 功能说明 </a>  
-	<text class="desc">安全提醒,强烈请您确保你的IT之家密码是唯一的,不会和其他网站重复. <br>
-		(虽然上本站不会保存密码,只是获取hash用于签到)</text>
+	<text class="desc">安全提醒,强烈请您确保你的IT之家密码是唯一的,不会和其他网站重复.
+		(虽然上本站不会保存密码,只是使用一次获取账号token用于签到,通过token无法还原原密码)</text>
 		<br>
-	<a  href='https://suijimimashengcheng.51240.com/' >生成一个随机密码 </a>  
+
+	<div>
+		<a  class="genpsw" href="javascript:void(0);" >生成一个随机密码 </a>  
+		<input class="newpsw"></input>
+		<text>(本地javascript生成)</text>
+	</div>
+	
 	 
 
 	<div class="fff">
@@ -140,7 +149,7 @@
 			<p class="ti" >密码: <input type="text" name="psw" /></p>
 
 		</form>
-		<div id="submit" class="submit" >提交</div>
+		<div id="submit" class="submit" >开始自动签到</div>
 	</div>
 
 	<div class="ani">
@@ -154,11 +163,28 @@
 
 	<script type="text/javascript" src="https://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
 	<script>
-		function genpsw(){
-			$(".recopsw").text((Math.random() ).toString(16).substr(2,12));
+		function shuffle(t) {
+			for (var e, r, a = t, o = a.length; o; ) r = Math.floor(Math.random() * o--), e = a[o], 
+			a[o] = a[r], a[r] = e;
+			return a;
 		}
+		function genPsw(){
+			
+			var charset = '1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!@$%^&*';
+			var arr = charset.split('');
+			arr = shuffle(arr);
+			arr = arr.slice(0,12);
+			$(".newpsw").val(arr.join(''));
+
+			$(".newpsw").select(); // 选中文本
+			document.execCommand("copy"); // 执行浏览器复制命令
+		}
+
+		$('.genpsw').click(genPsw);
+		genPsw();
+
 		$.ajax({
-			url: "https://lwx01.herokuapp.com/s",
+			url: "https://lwx01.herokuapp.com/status",
 			type: 'Get'
 		});
 
