@@ -4,28 +4,48 @@ var ctx = dom.getContext('2d');//创建context对象
 
  
 //  dom.width = window.innerWidth - 150
- dom.width = 200;
- dom.height = 200;
+ dom.width = 440;
+ dom.height = 440;
  var width = ctx.canvas.width ;//canvas宽度
  var height = ctx.canvas.height;//canvas高度
  console.log(width,height)
  
 var t = 1;
+function shuffle(t) {
+	for (var e, r, a = t, o = a.length; o; ) r = Math.floor(Math.random() * o--), e = a[o], 
+	a[o] = a[r], a[r] = e;
+	return a;
+}
+let arrT = '0123456789abcdef0123456789abcdef0123456789abcdef'.split("");
 var getRandomColor = function(index){    
-	return  '#' + (function(color){    
-		 return (color +=  '0123456789abcdef'[Math.floor(Math.random()*16)])    
-		 && (color.length == 6) ?  color : arguments.callee(color);    
-	})('');    
+	return '#' +  shuffle(arrT).slice(0,6).join('');
  } 
 
  
  
-
+var t = 0;
 function draw(time){
+	console.log(time)
+	// if(time - t < 33){
+	// 	requestAnimationFrame(draw)
+	// 	return;
+	// }
+
+	t = time;
  
 	// time /= 10;
-
 	ctx.clearRect(0,0,width,height)
+//    {
+// 		for (let i = 0; i < width; i+= 80) {
+// 			for (let j = 0; j < height; j += 80) {
+// 				ctx.fillStyle =  getRandomColor();
+// 				ctx.fillRect(i ,j  ,72,72);
+// 			}
+// 		}
+// 	}
+	
+
+ 
  
 	
 	time /= 10;
@@ -143,6 +163,5 @@ function draw(time){
 	 
    requestAnimationFrame(draw)
 }
-draw(11);
 
- 
+draw(1);
