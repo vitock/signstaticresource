@@ -8,15 +8,31 @@
 	<title>大名单</title>
 	
 	<style type="text/css">
+		
 		 body{
 			 background-color: black;
+		 }
+		 .bgimg{
+			 background-attachment: fixed;
+			 filter: blur(10px);
+			/* 背景图片 */
+			  background: url('//lwx01.herokuapp.com/randimg') center; 
+
+			  /* background: url('./aa.jpg') center;  */
+			  position: fixed;;
+			  left: 0px;
+			  right: 0px;
+			  width: 100%;
+			  height: 100%;
+			  z-index: -10000;
+			  opacity: 0.5;
 		 }
 		.list {
 
 			margin-top: 20px;
 			align-items: center;
 			justify-content: center;
-			background-color: black;
+
 		}
 
 		.name{
@@ -47,7 +63,9 @@
 	</style>
 </head>
 
+
 <body>
+	<div class="bgimg"></div>
 	<!-- <img src='https://imxsw.herokuapp.com/'> -->
 	<text class="note">由于服务器是用的免费的heroku,每月只有250小时运行时长，到月底可能服务器没时间了,无法启动。 （一般情况下，网站无人访问会自动休眠，每天运行2个小时，足够了。）</text>
 	<div class="list"></div>
