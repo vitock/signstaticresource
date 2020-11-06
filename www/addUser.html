@@ -214,7 +214,8 @@
 					$(".fff").show();
 					$(".ani").hide();
 					if (data && data.succ == 1) {
-						alert("成功");
+						alert("成功,进入大名单");
+						location.href = './list.html';
 					}
 					else {
 						alert(data.msg);
