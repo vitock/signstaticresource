@@ -24,7 +24,7 @@
 			color: white;
 		}
 		.idx{
-			margin-left: 40px;
+			margin-left: 15px;
 			margin-top: 10px;
 			font-size: 17px;
 			color: #bbbbbb;
@@ -67,6 +67,7 @@
 						$('.list').append(`<text class='idx'>${data.r.length}.</text> <br>`  );
 						for (let index = 0; index < data.r.length; index++) {
 							const element = data.r[index];
+							element.time = ('' + element.time).substr(5,11);
 							$('.list').append(`<text class='idx'>${index}.</text> <text class='name'> ${ element.name}</text><text class='time'> ${ element.time}</text><br>`  );	
 						}
 					}
