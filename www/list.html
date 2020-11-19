@@ -88,10 +88,11 @@
 					console.log(data);
 					if(data && data.r){
 						$('.list').append(`<text class='idx'>${data.r.length}.</text> <br>`  );
+						data.r.reverse();
 						for (let index = 0; index < data.r.length; index++) {
 							const element = data.r[index];
 							element.time = ('' + element.time).substr(5);
-							$('.list').append(`<text class='idx'>${index}.</text> <text class='name'> ${ element.name}</text><text class='time'> ${ element.time}</text><br>`  );	
+							$('.list').append(`<text class='idx'>${data.r.length - index}.</text> <text class='name'> ${ element.name}</text><text class='time'> ${ element.time}</text><br>`  );	
 						}
 					}
 					  
