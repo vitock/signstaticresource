@@ -5,6 +5,9 @@ sc2.src = location.protocol + '//libs.baidu.com/jquery/2.0.0/jquery.min.js'
 document.body.appendChild(sc2);
 
 sc2.onload = function(){
+    var div = document.createElement('div');
+    div.className = 'bgimg31';
+    $('body').prepend(div);
     var sc3 = document.createElement('script');
     sc3.text = `
     $('#a903').click(function(){
@@ -45,5 +48,7 @@ let html = `
 `
 
 document.write(html)
+ 
+
 // window.document.body.insertAdjacentHTML('beforeend',html)
 
