@@ -27,6 +27,14 @@
 }
 body{
     background-color: black;
+    padding: 0px;
+}
+div{
+    padding: 0px;
+    color:white;
+}
+font{
+    color:white;
 }
 .bgimg31{
     background-attachment: fixed;
