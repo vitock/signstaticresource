@@ -7,6 +7,7 @@ document.body.appendChild(sc2);
 sc2.onload = function(){
     var div = document.createElement('div');
     div.className = 'bgimg31';
+    div.style.background = `url('//lwx01.herokuapp.com/randimg?v=${Math.random().toString(16).substr(2)}') center`
     $('body').prepend(div);
     var sc3 = document.createElement('script');
     sc3.text = `
