@@ -26,12 +26,10 @@
     margin-top: 30px;
 }
 body{
-    background-color: #333333;
+    /* background-color: #333333; */
     padding: 0px;
 }
-h1{
-    color:  white;
-}
+ 
 
 .bgimg31{
     background-attachment: fixed;
