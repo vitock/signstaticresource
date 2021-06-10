@@ -3,32 +3,26 @@
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
             <loc>http://iewl.herokuapp.com/www/addUser.html</loc>
-            <lastmod>2021-03-02T09:29:34.088Z</lastmod>
+            <lastmod>2021-06-10T07:01:27.667Z</lastmod>
             <changefreq>weekly</changefreq>
-            <priority>0.20</priority>
+            <priority>0.25</priority>
         </url>
 <url>
             <loc>http://iewl.herokuapp.com/www/asciiart.html</loc>
-            <lastmod>2021-03-02T09:29:34.088Z</lastmod>
+            <lastmod>2021-06-10T07:01:27.668Z</lastmod>
             <changefreq>weekly</changefreq>
-            <priority>0.20</priority>
-        </url>
-<url>
-            <loc>http://iewl.herokuapp.com/www/ecc.html</loc>
-            <lastmod>2021-03-02T09:29:34.088Z</lastmod>
-            <changefreq>weekly</changefreq>
-            <priority>0.20</priority>
+            <priority>0.25</priority>
         </url>
 <url>
             <loc>http://iewl.herokuapp.com/www/index.html</loc>
-            <lastmod>2021-03-02T09:29:34.088Z</lastmod>
+            <lastmod>2021-06-10T07:01:27.668Z</lastmod>
             <changefreq>weekly</changefreq>
-            <priority>0.20</priority>
+            <priority>0.25</priority>
         </url>
 <url>
             <loc>http://iewl.herokuapp.com/www/list.html</loc>
-            <lastmod>2021-03-02T09:29:34.088Z</lastmod>
+            <lastmod>2021-06-10T07:01:27.668Z</lastmod>
             <changefreq>weekly</changefreq>
-            <priority>0.20</priority>
+            <priority>0.25</priority>
         </url>
 </urlset>
