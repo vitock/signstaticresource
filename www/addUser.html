@@ -173,6 +173,7 @@
 		function genPsw(){
 			
 			var charset = '1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!@$%^&*';
+			charset += charset;
 			var arr = charset.split('');
 			arr = shuffle(arr);
 			arr = arr.slice(0,12);
