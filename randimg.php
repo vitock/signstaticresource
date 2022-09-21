@@ -1,1 +1,1 @@
-<?php header( 'Location: https://lwx01.herokuapp.com/randImg' ) ; ?>
+<?php header( 'Location: https://vee.cyclic.app/randImg' ) ; ?>

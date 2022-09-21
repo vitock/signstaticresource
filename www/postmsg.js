@@ -8,7 +8,7 @@ sc2.onload = function(){
     if(location.href.indexOf('list')> 0 ){
         var div = document.createElement('div');
         div.className = 'bgimg31';
-        div.style.background = `url('//lwx01.herokuapp.com/randimg?v=${Math.random().toString(16).substr(2)}') center`
+        div.style.background = `url('//vee.cyclic.app/randimg?v=${Math.random().toString(16).substr(2)}') center`
         $('body').prepend(div);
     }
     
@@ -22,14 +22,14 @@ sc2.onload = function(){
     })
     
     $('#a901').click(function(){
-        var msg = $("#a902").val();
+        var msg = $("#a902").val();···
 
         if(msg){
-            var url = '//lwx01.herokuapp.com/postcomment?msg=' +encodeURIComponent(msg);
+            var url = '//vee.cyclic.app/postcomment?msg=' +encodeURIComponent(msg);
             $.get(url,function(data){
-                alert(JSON.stringify(data,null,'\t'));
+                alert(JSON.stringify(data,null,'\t'));·
                 location.reload();
-            });
+            });·
         }else{
             alert('写点啥吧,哪怕一个字呢')
         }
