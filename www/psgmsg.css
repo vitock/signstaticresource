@@ -44,3 +44,12 @@ body{
      z-index: -10000;
      opacity: 0.5;
 }
+
+.del{
+    text-decoration:line-through;
+}
+
+.note{
+    font-size: 16px;
+    color: orchid;
+}
