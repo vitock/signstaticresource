@@ -15,14 +15,14 @@ sc2.onload = function(){
     var sc3 = document.createElement('script');
     sc3.text = `
     $('#a903').click(function(){
-        location.href = location.protocol + '//' + location.host;
+        location.href = "/"
     })
     $('#hexopage').click(function(){
-        location.href = "//vitock.now.sh"
+        location.href = "/"
     })
     
     $('#a901').click(function(){
-        var msg = $("#a902").val();···
+        var msg = $("#a902").val();
 
         if(msg){
             var url = '//vee.cyclic.app/postcomment?msg=' +encodeURIComponent(msg);
