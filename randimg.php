@@ -1,1 +1,1 @@
-<?php header( 'Location: https://vee.cyclic.app/randImg' ) ; ?>
+<?php header( 'Location: https://zeo.onrender.com/randImg' ) ; ?>
