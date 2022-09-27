@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+ 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+ 	<meta name="viewport" content="width=device-width,inital-scale=1">
+	<style>
+		pre{
+			font-size: 18pt;
+		}
+ 
+	</style>
+	
+</head>
+<body>
+	<pre id="ppp" >loading</pre>	 
+</body>
+<script type="text/javascript" src="//libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+
+<script>
+	var search = new URLSearchParams(location.search);
+	console.log(search.get('op'))
+	$.getJSON(`//zeo.onrender.com/${search.get('op')}?` + Date.now(),
+	function(data){
+		document.getElementById("ppp").innerText = JSON.stringify(data,null,'\t')
+	})			 
+</script>
+</html>
