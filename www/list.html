@@ -86,7 +86,6 @@
 				success: function (data) {
 					console.log(data);
 					if(data && data.r){
-						$('.list').append(`<text class='idx'>${data.r.length}.</text> <br>`  );
 						data.r.reverse();
 						document.getElementById('ccc').innerHTML = '' + data.r.length
 						for (let index = 0; index < data.r.length; index++) {
