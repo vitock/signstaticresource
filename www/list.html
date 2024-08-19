@@ -24,6 +24,7 @@
 		.name{
 			margin-top: 10px;
 			font-size: 20px;
+			color: #334;
 		}
 		.idx{
 			margin-left: 15px;
@@ -36,12 +37,12 @@
 		.time{
 			font-size: 17px;
 			margin-left: 20px;
-			color: cornflowerblue;
+			color: #575757;
 		}
 
 		.note{
 			font-size: 15px;
-			color: coral;
+			color: #111;
 		}
 	
 
@@ -73,7 +74,7 @@
 	<script>
 		
 		$.ajax({
-				url: '//zeo.onrender.com/names?t='+new Date().getTime(),
+				url: '//zeo.onrender.com/names?zt='+new Date().getTime(),
 				type: 'Get',
 				dataType: 'json',
 				data: $('.form').serialize(),
@@ -94,38 +95,36 @@
 							$('.list').append(`<text class='idx'>${data.r.length - index}.</text> <text class='name'> ${ element.name}</text><text class='time'> ${ element.time}</text><br>`  );	
 						}
 					}
-					  
- 
 					 
 				},
 
 			});
 
 			
-			$.ajax({
-			url: '//zeo.onrender.com/status?t='+new Date().getTime(),
-			type: 'Get',
-			dataType: 'json',
-			data: $('.form').serialize(),
-			error:function(e){
+		// 	$.ajax({
+		// 	url: '//zeo.onrender.com/status?t='+new Date().getTime(),
+		// 	type: 'Get',
+		// 	dataType: 'json',
+		// 	data: $('.form').serialize(),
+		// 	error:function(e){
 			 
-				console.log(e);
-				alert("出错" + JSON.stringify(e));
-			},
-			success: function (data) {
-				console.log(data);
-				if(data ){
+		// 		console.log(e);
+		// 		alert("出错" + JSON.stringify(e));
+		// 	},
+		// 	success: function (data) {
+		// 		console.log(data);
+		// 		if(data ){
 
-					$('.status').append(`<text class='idx'>签到: ${data.signed}.</text> <br>`  );
-					$('.status').append(`<text class='idx'>未签到: ${data.notsigned}.</text> <br>`  );
+		// 			// $('.status').append(`<text class='idx'>签到: ${data.signed}.</text> <br>`  );
+		// 			// $('.status').append(`<text class='idx'>未签到: ${data.notsigned}.</text> <br>`  );
 				
-				}
+		// 		}
 					  
  
 					 
-			},
+		// 	},
 
-		});
+		// });
 
 	</script>
 
