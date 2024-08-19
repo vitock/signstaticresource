@@ -8,10 +8,11 @@
 	<title>大名单</title>
 	
 	<style type="text/css">
-		
-		 body{
-			 background-color: black;
-		 }
+		body{
+			margin: auto;
+			max-width: 780px;
+		}
+	 
 		.list {
 
 			margin-top: 20px;
@@ -23,7 +24,6 @@
 		.name{
 			margin-top: 10px;
 			font-size: 20px;
-			color: white;
 		}
 		.idx{
 			margin-left: 15px;
@@ -44,6 +44,11 @@
 			color: coral;
 		}
 	
+
+		#ccc{
+			font-size: 50px;
+			color: #999;
+		}
 		
 	</style>
 </head>
@@ -59,10 +64,11 @@
 	<p></p>
 
 	<div class="status"></div>
+	<text id="ccc">...<text>
 	<div class="list"></div>
 	 
 
-	<script type="text/javascript" src="https://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+	<script type="text/javascript" src="//libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
 
 	<script>
 		
@@ -81,6 +87,7 @@
 					if(data && data.r){
 						$('.list').append(`<text class='idx'>${data.r.length}.</text> <br>`  );
 						data.r.reverse();
+						document.getElementById('ccc').innerHTML = '' + data.r.length
 						for (let index = 0; index < data.r.length; index++) {
 							const element = data.r[index];
 							element.time = ('' + element.time).substr(5);
