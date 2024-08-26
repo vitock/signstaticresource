@@ -84,12 +84,12 @@
 					alert("出错" + JSON.stringify(e));
 				},
 				success: function (data) {
-					console.log(data);
 					if(data && data.r){
-						data.r.reverse();
+						var arr = data.r
+						arr.sort((a,b)=>{return a.time < b.time ? -1  : a.time == b.time ? 0 : 1})
 						document.getElementById('ccc').innerHTML = '' + data.r.length
-						for (let index = 0; index < data.r.length; index++) {
-							const element = data.r[index];
+						for (let index = 0; index < arr.length; index++) {
+							const element = arr[index];
 							element.time = ('' + element.time).substr(5);
 							$('.list').append(`<text class='idx'>${data.r.length - index}.</text> <text class='name'> ${ element.name}</text><text class='time'> ${ element.time}</text><br>`  );	
 						}
