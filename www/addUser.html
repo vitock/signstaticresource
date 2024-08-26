@@ -121,9 +121,20 @@
 			 font-size: 13px;
 		 }
 
-		 .newpsw{
-			 display:inline-flex
+		 #newpsw{
+			display: block;
+			 height: 80px;
+
+			 padding: 10px;
+			 background-color: #333344;
+			 color: #eeeeff;
+			 border-radius: 15px;
+			 margin: 10px 15px;
+			 text-align: center;
+			 line-height: 80px;
 		 }
+
+		 
 		
 	</style>
 </head>
@@ -132,14 +143,18 @@
 	<div class="main">
  
 	<h1>IT之家 自动签到程序<h1>
-	<text class="desc">安全提醒,强烈请您确保你的IT之家密码是唯一的,不会和其他网站重复.
-		(本站也不会保存密码,只是使用一次获取账号token用于签到,通过token无法还原原密码),哪天出了事故,孩子肯定不是我的 :)</text>
-		<br>
+	<text class="desc">安全提醒,强烈请您确保你的IT之家密码是唯一的,不会和其他网站重复.</text>
+	<br>
+	<text class="desc">安全提醒,强烈请您确保你的IT之家密码是唯一的,不会和其他网站重复.</text>
+	<br>
+	<text class="desc">安全提醒,强烈请您确保你的IT之家密码是唯一的,不会和其他网站重复.</text>
+	<br>
+	<text class="desc">土豆服务器，不保证数据安全.</text>
 
 	<div>
-		<a  class="genpsw" href="javascript:void(0);" >生成一个随机密码 </a>  
-		<input class="newpsw"></input>
-		<text>(本地javascript生成)</text>
+		<a  class="genpsw" href="javascript:void(0);" >生成一个随机密码(浏览器生成，不通过网络) </a>  
+		<text id="newpsw"></text>
+
 	</div>
 	
 	 
@@ -171,17 +186,26 @@
 			a[o] = a[r], a[r] = e;
 			return a;
 		}
-		function genPsw(){
-			
-			var charset = '1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!@$%^&*';
-			charset += charset;
-			var arr = charset.split('');
-			arr = shuffle(arr);
-			arr = arr.slice(0,12);
-			$(".newpsw").val(arr.join(''));
+		async function wait(t) {
+			return new Promise(r=>{
+				setTimeout(() => {
+					r('')
+				}, t * 1000 );
+			})
+		}
+		async function  genPsw(){
 
-			$(".newpsw").select(); // 选中文本
-			document.execCommand("copy"); // 执行浏览器复制命令
+			var c = 50;
+			while (c -- ) {
+				var charset = '1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!@$%^&*!@$%^&*';
+				charset += charset;
+				var arr = charset.split('');
+				arr = shuffle(arr);
+				arr = arr.slice(0,12);
+				
+				$("#newpsw").text(arr.join(''))
+				await wait(0.0)
+			}
 		}
 
 		$('.genpsw').click(genPsw);
@@ -241,4 +265,4 @@
 	</div>
 </body>
 
-</html>···
+</html>
