@@ -7,16 +7,12 @@
     <title>大名单</title>
 
     <style type="text/css">
-      body {
+       body {
         margin: auto;
-        max-width: 780px;
+        max-width: 940px;
       }
 
-      .list {
-        margin-top: 20px;
-        align-items: center;
-        justify-content: center;
-      }
+     
 
       .name {
         margin-top: 10px;
@@ -46,10 +42,11 @@
 
 	  ul {
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(5, 1fr);
         list-style-type: none;
         padding: 0;
         border: solid 1px #eeeeef;
+        border-radius: 13px;
       }
       li {
         justify-content: center;
@@ -57,18 +54,15 @@
         padding: 15px;
         text-align: center;
         border-bottom: solid 1px #eeeeef;
+        border-right: solid 1px #eeeeef;
       }
 
-      li:nth-child(3n + 1){ 
-        border-right: solid 1px #eeeeef;
-      }
-      li:nth-child(3n + 2){ 
-        border-right: solid 1px #eeeeef;
-      }
+      li:nth-child(5n + 5){ 
+        border-right: none
+      } 
       li:hover{
-        background-color: #cccccc;
+        background-color:#ccc
       }
-         
     </style>
   </head>
 
