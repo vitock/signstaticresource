@@ -50,7 +50,12 @@
 			font-size: 50px;
 			color: #999;
 		}
-		
+		ul {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr); 
+            list-style-type:none;
+            padding: 0;
+        }
 	</style>
 </head>
 
@@ -66,7 +71,7 @@
 
 	<div class="status"></div>
 	<text id="ccc">...</text>
-	<div class="list"></div>
+	<ul class="list"></ul>
 	 
 
 	<script type="text/javascript" src="//libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
@@ -74,7 +79,7 @@
 	<script>
 		
 		$.ajax({
-				url: '//zeo.onrender.com/names?zt='+new Date().getTime(),
+				url: '//zeo.onrender.com/names?&t=1&zt='+new Date().getTime(),
 				type: 'Get',
 				dataType: 'json',
 				data: $('.form').serialize(),
@@ -95,7 +100,7 @@
 							if (!date) {
 								date = '--'
 							}
-							$('.list').append(`<text class='idx'>${data.r.length - index}.</text> <text class='name'> ${ element.name}</text><text class='time'> ${ date}</text><br>`  );	
+							$('.list').append(`<li><text class='idx'>${data.r.length - index}.</text> <text class='name'> ${ element.name}</text><text class='time'> ${ date}</text></li>`  );	
 						}
 					}
 					 
