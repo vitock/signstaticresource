@@ -1,148 +1,142 @@
 <!DOCTYPE html>
 <html>
- 
-<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<meta name="description" content="IT 之家自动签到">
-	<meta name="viewport" content="width=device-width,inital-scale=1">
-	<title>大名单</title>
-	
-	<style type="text/css">
-		body{
-			margin: auto;
-			max-width: 780px;
-		}
-	 
-		.list {
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="description" content="IT 之家自动签到" />
+    <meta name="viewport" content="width=device-width,inital-scale=1" />
+    <title>大名单</title>
 
-			margin-top: 20px;
-			align-items: center;
-			justify-content: center;
+    <style type="text/css">
+      body {
+        margin: auto;
+        max-width: 780px;
+      }
 
-		}
+      .list {
+        margin-top: 20px;
+        align-items: center;
+        justify-content: center;
+      }
 
-		.name{
-			margin-top: 10px;
-			font-size: 20px;
-			color: #334;
-		}
-		.idx{
-			margin-left: 15px;
-			margin-top: 10px;
-			font-size: 17px;
-			color: #bbbbbb;
-			padding-right: 20px;
-		}
+      .name {
+        margin-top: 10px;
+        font-size: 20px;
+        color: #99a;
+        font-weight: 600;
+      }
+      .idx {
+        margin-left: 15px;
+        margin-top: 10px;
+        font-size: 17px;
+        color: #bbbbbb;
+        padding-right: 20px;
+      }
 
-		.time{
-			font-size: 17px;
-			margin-left: 20px;
-			color: #575757;
-		}
+      .time {
+        font-size: 17px;
+        margin-left: 20px;
+        color: #aab;
+      }
 
-		.note{
-			font-size: 15px;
-			color: #111;
-		}
-	
+      .note {
+        font-size: 15px;
+        color: #111;
+      }
 
-		#ccc{
-			font-size: 50px;
-			color: #999;
-		}
-		ul {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr); 
-            list-style-type:none;
-            padding: 0;
-        }
-	</style>
-</head>
+      #ccc {
+        font-size: 50px;
+        color: #999;
+      }
+	  ul {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        list-style-type: none;
+        padding: 0;
+        border: solid 1px #eeeeef;
+      }
+      li {
+        justify-content: center;
+        align-items: center;
+        padding: 15px;
+        text-align: center;
 
+      }
 
-<body>
-	<div class="bgimg"></div>
-	<!-- <img src='https://imxsw.herokuapp.com/'> -->
-	<text class="note del">由于服务器是用的免费的heroku,每月只有250小时运行时长，到月底可能服务器没时间了,无法启动。 （一般情况下，网站无人访问会自动休眠，每天运行2个小时，足够了。）</text>
-    
-	<p></p>
-	<div class="note ">天下无不散之筵席，heroku取消免费额度，服务不能运行。江湖再见</div>
-	<p></p>
+      li:nth-child(1n){
+        border-bottom: solid 1px #eeeeef;
+        border-right: solid 1px #eeeeef;
+      }
 
-	<div class="status"></div>
-	<text id="ccc">...</text>
-	<ul class="list"></ul>
-	 
+      li:nth-child(2n){
+        border-right: solid 1px #eeeeef;
+      }
 
-	<script type="text/javascript" src="//libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+      li:hover{
+        border:solid 1px #1188ff;
+      }
+         
+    </style>
+  </head>
 
-	<script>
-		
-		$.ajax({
-				url: '//zeo.onrender.com/names?&t=1&zt='+new Date().getTime(),
-				type: 'Get',
-				dataType: 'json',
-				data: $('.form').serialize(),
-				error:function(e){
-			 
-					console.log(e);
-					alert("出错" + JSON.stringify(e));
-				},
-				success: function (data) {
-					if(data && data.r){
-						var arr = data.r
-						arr.sort((a,b)=>{return a.time < b.time ? 1  : a.time == b.time ? 0 : -1})
-						document.getElementById('ccc').innerHTML = '' + data.r.length
-						for (let index = 0; index < arr.length; index++) {
-							const element = arr[index];
-							element.time = ('' + element.time).substring(0,10)
-							var date = element.time;
-							if (!date) {
-								date = '--'
-							}
-							$('.list').append(`<li><text class='idx'>${data.r.length - index}.</text> <text class='name'> ${ element.name}</text><text class='time'> ${ date}</text></li>`  );	
-						}
-					}
-					 
-				},
+  <body>
+    <div class="bgimg"></div>
+    <!-- <img src='https://imxsw.herokuapp.com/'> -->
+    <text class="note del"
+      >由于服务器是用的免费的heroku,每月只有250小时运行时长，到月底可能服务器没时间了,无法启动。
+      （一般情况下，网站无人访问会自动休眠，每天运行2个小时，足够了。）</text
+    >
 
-			});
+    <p></p>
+    <div class="note">
+      天下无不散之筵席，heroku取消免费额度，服务不能运行。江湖再见
+    </div>
+    <p></p>
 
-			
-		// 	$.ajax({
-		// 	url: '//zeo.onrender.com/status?t='+new Date().getTime(),
-		// 	type: 'Get',
-		// 	dataType: 'json',
-		// 	data: $('.form').serialize(),
-		// 	error:function(e){
-			 
-		// 		console.log(e);
-		// 		alert("出错" + JSON.stringify(e));
-		// 	},
-		// 	success: function (data) {
-		// 		console.log(data);
-		// 		if(data ){
+    <div class="status"></div>
+    <text id="ccc">...</text>
+    <ul class="list"></ul>
 
-		// 			// $('.status').append(`<text class='idx'>签到: ${data.signed}.</text> <br>`  );
-		// 			// $('.status').append(`<text class='idx'>未签到: ${data.notsigned}.</text> <br>`  );
-				
-		// 		}
-					  
- 
-					 
-		// 	},
+    <script
+      type="text/javascript"
+      src="//libs.baidu.com/jquery/2.0.0/jquery.min.js"
+    ></script>
 
-		// });
+    <script>
+      $.ajax({
+        url: "//zeo.onrender.com/names?&tv=1&t=" + new Date().getTime(),
+        type: "Get",
+        dataType: "json",
+        data: $(".form").serialize(),
+        error: function (e) {
+          console.log(e);
+          alert("出错" + JSON.stringify(e));
+        },
+        success: function (data) {
+          if (data && data.r) {
+            var arr = data.r;
+            arr.sort((a, b) => {
+              return a.time < b.time ? 1 : a.time == b.time ? 0 : -1;
+            });
+            document.getElementById("ccc").innerHTML = "" + data.r.length;
+            for (let index = 0; index < arr.length; index++) {
+              const element = arr[index];
+              element.time = ("" + element.time).substring(0, 10);
+              var date = element.time;
+              if (!date) {
+                date = "";
+              }
+              $(".list").append(
+                `<li><text class='name'> ${element.name}</text><text class='time'> ${date}</text></li>`
+              );
+            }
+          }
+        },
+      });
 
-	</script>
+    </script>
 
-<link rel="stylesheet" href="psgmsg.css">
-<!-- <script type="text/javascript" src="postmsg.js"></script> -->
-<!-- <script src="//gist.github.com/vitock/33ea1af1f69af05d57b763bdf3cc6964.js"></script> -->
-
-
-	 
-	
-</body>
-
+    <link rel="stylesheet" href="psgmsg.css" />
+    <!-- <script type="text/javascript" src="postmsg.js"></script> -->
+    <!-- <script src="//gist.github.com/vitock/33ea1af1f69af05d57b763bdf3cc6964.js"></script> -->
+  </body>
 </html>
