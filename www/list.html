@@ -24,13 +24,7 @@
         color: #99a;
         font-weight: 600;
       }
-      .idx {
-        margin-left: 15px;
-        margin-top: 10px;
-        font-size: 17px;
-        color: #bbbbbb;
-        padding-right: 20px;
-      }
+ 
 
       .time {
         font-size: 17px;
@@ -47,6 +41,9 @@
         font-size: 50px;
         color: #999;
       }
+	  
+
+
 	  ul {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
@@ -59,20 +56,17 @@
         align-items: center;
         padding: 15px;
         text-align: center;
-
-      }
-
-      li:nth-child(1n){
         border-bottom: solid 1px #eeeeef;
-        border-right: solid 1px #eeeeef;
       }
 
-      li:nth-child(2n){
+      li:nth-child(3n + 1){ 
         border-right: solid 1px #eeeeef;
       }
-
+      li:nth-child(3n + 2){ 
+        border-right: solid 1px #eeeeef;
+      }
       li:hover{
-        border:solid 1px #1188ff;
+        background-color: #cccccc;
       }
          
     </style>
