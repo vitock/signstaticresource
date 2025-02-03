@@ -14,7 +14,7 @@
 
 
 var sc2 = document.createElement('script');
-sc2.src = location.protocol + '//libs.baidu.com/jquery/2.0.0/jquery.min.js'
+sc2.src = location.protocol + '//cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js'
 
 document.body.appendChild(sc2);
 
